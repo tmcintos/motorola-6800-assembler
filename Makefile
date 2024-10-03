@@ -11,6 +11,7 @@ SRCDIR     = src
 OBJDIR     = obj
 BINDIR     = bin
 TESTDIR    = test
+DSTDIR     = /usr/local/bin
 
 CFLAGS    :=
 LFLAGS    :=
@@ -30,6 +31,9 @@ DIRS      := $(OBJDIR) $(BINDIR)
 
 .PHONEY: all
 all: directories as0 as1 as4 as5 as9 as11
+
+install: all
+	install -v -m 0755 -o root $(BINDIR)/* $(DSTDIR)
 
 as0: directories $(BINDIR)/$(APP)0
 

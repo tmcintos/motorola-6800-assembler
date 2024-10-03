@@ -46,7 +46,7 @@ void warn(char *str)
  */
 int delim(char c)
 {
-	if( any(c," \t\n"))
+	if( any(c," \t\r\n"))
 		return(YES);
 	return(NO);
 }

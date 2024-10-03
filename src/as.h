@@ -17,9 +17,11 @@
 
 /*      Character Constants     */
 #define NEWLINE '\n'
+#define CR      '\r'
 #define TAB     '\t'
 #define BLANK   ' '
 #define EOS     '\0'
+#define DOS_EOF 26
 
 /*      Opcode Classes          */
 #define INH     0       /* Inherent                     */
