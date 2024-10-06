@@ -12,7 +12,7 @@
  */
 void fatal(char *str)
 {
-	printf("%s\n",str);
+	fprintf(stderr, "%s\n",str);
 	exit(-1);
 }
 
@@ -23,9 +23,9 @@ void fatal(char *str)
 void error(char *str)
 {
 	if(N_files > 1)
-		printf("%s,",Argv[Cfn]);
-	printf("%d: ",Line_num);
-	printf("%s\n",str);
+        fprintf(stderr,"%s,",Argv[Cfn]);
+    fprintf(stderr,"%d: ",Line_num);
+    fprintf(stderr,"%s\n",str);
 	Err_count++;
 }
 
@@ -36,9 +36,9 @@ void error(char *str)
 void warn(char *str)
 {
 	if(N_files > 1)
-		printf("%s,",Argv[Cfn]);
-	printf("%d: ",Line_num);
-	printf("Warning --- %s\n",str);
+        fprintf(stderr,"%s,",Argv[Cfn]);
+    fprintf(stderr,"%d: ",Line_num);
+    fprintf(stderr,"Warning --- %s\n",str);
 }
 
 /*
@@ -76,7 +76,7 @@ void eword(int wd)
 int emit(int byte)
 {
 #ifdef DEBUG
-	printf("%2x @ %4x\n",byte,Pc);
+    fprintf(stderr,"%2x @ %4x\n",byte,Pc);
 #endif
 	if(Pass==1){
 		Pc++;
