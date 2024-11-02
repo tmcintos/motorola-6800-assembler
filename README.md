@@ -4,7 +4,7 @@ This repository contains the source code to build the Motorola Cross Assemblers 
 
 My intent is to keep the source code as close to the original as possible.  The original source code was written in pre-ANSI C, so it required some editing to bring it up to the ANSI C standard.  It was also designed to have one main c file where you had to comment in and out the correct *.h and *.c files to build the assemblers for the different microprocessors in the 6800 family.  I updated this to build each module into its own object file and then directed the linker to include the appropriate object files for the different assemblers for the various microprocessors.  I also added a directory structure where the source code is kept in the ./src directory, object files are placed in the ./obj directory, and binary files are placed in the ./bin directory.
 
-The code can be built using the gcc compiler on Windows, Linux, and MacOS.
+The code can be built using the gcc compiler on Windows, Linux, and macOS (and also using the native Xcode command line tools macOS).
 
 This module will build the following binaries for the specified Motorola microprocessors:
 
@@ -23,6 +23,10 @@ All you need to do to compile the assemblers is to go to the main directly for t
 ```
 cd /<path>/motorola-6800-assembler
 make all
+```
+To install the assemblers into `/usr/local/bin`:
+```
+sudo make install
 ```
 You can also build individual assemblers with statements similar to the following:
 ```
