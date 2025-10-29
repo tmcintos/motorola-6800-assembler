@@ -2,6 +2,13 @@
 #include "globals.h"
 #include "as.h"
 
+#include <limits.h>
+
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#define defined_PATH_MAX 1
+#endif
+
 /* global variables */
 int     Line_num =0;            /* current line number          */
 int     Err_count =0;           /* total number of errors       */
@@ -47,5 +54,4 @@ int     CREflag = 0;            /* cross reference table flag */
 struct  nlist *root;            /* root node of the tree */
   
 FILE    *Objfil =0;             /* object file's file descriptor*/
-char    Obj_name[] = {"             "};
-
+char    Obj_name[PATH_MAX] = {};

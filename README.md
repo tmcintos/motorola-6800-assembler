@@ -16,6 +16,9 @@ This module will build the following binaries for the specified Motorola micropr
 ./bin/as9   6809 processor
 ./bin/as11  68HC11 processor
 ```
+## About This Fork
+
+This fork includes a new `-o <path>` option to specify the output file path, changes to allow assembly of DOS-formatted source files, error output on stderr, and the addition of an install target in the Makefile. It has been built with Xcode 26.0.1 and tested on macOS 26.0.1
 
 ## Compiling The Source Code
 

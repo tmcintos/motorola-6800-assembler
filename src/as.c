@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	int	j = 0;
 
 	if(argc < 2){
-		printf("Usage: %s [files]\n",argv[j]);
+		fprintf(stderr,"Usage: %s <file...> [options]\n",argv[j]);
 		exit(1);
 		}
 	  Argv = argv;
@@ -42,13 +42,23 @@ int main(int argc, char *argv[])
 	  N_files = j-1;
 	 if (j < argc )
 	  {
-	  argv[j]++;
 	  while (j<argc)
 	   {
+	   if (*argv[j] == '-')
+	     argv[j]++;
 	   for (i = argv[j]; *i != 0; i++)
 	     if ((*i <= 'Z') && (*i >= 'A'))
 	       *i = *i + 32;
-	   if (strcmp(argv[j],"l")==0)
+	   if (strcmp(argv[j],"o")==0) {
+		 if (++j < argc) {
+		   strcpy(Obj_name,argv[j]);
+		   }
+		 else {
+		   fprintf(stderr,"-o requires argument\n");
+		   exit(1);
+		   }
+		 }
+	   else if (strcmp(argv[j],"l")==0)
 	     Lflag = 1;
 	   else if (strcmp(argv[j],"nol")==0)
 	     Lflag = 0;
@@ -63,6 +73,10 @@ int main(int argc, char *argv[])
 	    j++;
 	   }
 	  }
+
+	if( (Objfil = fopen(Obj_name,"w")) == NULL)
+		fatal("Can't create object file");
+
 	root = NULL;
 
 	Cfn = 0;
@@ -127,8 +141,6 @@ void initialize(void)
 	}
 	while (Obj_name[i++] != 0);
 	strcat(Obj_name,".s19");  /* append .out to file name. */
-	if( (Objfil = fopen(Obj_name,"w")) == NULL)
-		fatal("Can't create object file");
 	fwdinit();	/* forward ref init */
 	localinit();	/* target machine specific init. */
 }
